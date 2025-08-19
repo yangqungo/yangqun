@@ -8,3 +8,73 @@ ksxifan_ver_1.py是脚本文件
 
 需要Python 3.10+
 青龙 目前qinglong:2.17.9+
+
+
+
+
+ck说明:
+{    
+    "User-Agent": "Mozil** like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 KSAD-(IOS)-3.3.66.2110",
+    必有:
+    "playlet.api_st": "Cg5***8iKKWyEePjsh*X2YtUMQa**9KCxot*9qUj****-***-**TAB",
+必有:
+    "userId": "14*929",
+必有:
+    "passToken": "ChNwY**xZyCd__a3gD*wTGw*R-1-*NKCG7KlOenOuG*aQ**-*-woBTAB",
+必有:
+    "did": "IOS_*FEDB",
+
+    "message": "eMK*aX2mvh",
+
+需要代理本账号的,这里设置.无需要的话为空,默认为空,不需要设置:
+    "proxies": {
+        "http": "socks5://5i1@8.138.081",
+        "https": "socks5://p15i1@8.11081"
+    },
+
+    "appId": "1091400012",
+
+必有
+    "egid": "DFPF3D***01C4AA0B",
+和did是一个值
+    "deviceId": "IOS*EDB",
+
+不必有,每个都是唯一,通过抓包获取,没有的 自己随便改动几个字符
+    "kenyIdList": [
+        {
+            "version": "20230330",
+            "kenyId": "08af18e8fde1939eb285fbb05617162f"
+        },
+        {
+            "version": "20250325",
+            "kenyId": "c6375fa9f668e88646b8f5aa719b496e"
+        }
+    ],
+
+    "systemBootTime": "1754315031",
+    "adParam": {
+        "adNum": 0,
+        "pageId": 0,
+        "posId": 0,
+        "subPageId": 0
+    },
+    "imsi": "",
+
+不必有,wifi信息,建议自己改改
+    "wifiList": [
+        {
+            "bssid": "24:69:67:fd:fd:a2",
+            "ssid": "kei"
+        }
+    ],
+不必有,建议自己改改,随机换点字符
+    "idfv": "FE0662D7-F36E-4C46-AA7C-2BE202F9E2D2",
+
+不必有,建议自己改改,只改IP 其他不改
+    "networkInfo": {
+        "operatorType": 1,
+        "mac": "02:00:00:00:00:00",
+        "ip": "192.168.1.21",
+        "connectionType": 100
+    }
+}
