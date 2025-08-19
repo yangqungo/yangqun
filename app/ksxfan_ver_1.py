@@ -379,7 +379,7 @@ def RUN(cl: A, ctx: C, lg: logging.LoggerAdapter) -> C:
                     bd = d1(gbo["body"])
                     bo = cl.d(url=gbo["url"], payload=bd, headers=gbo["headers"])
                     ctx.reward = HB(ctx, bo, base_url=cl.base_url, token=cl.token, stop_event=cl.stop_event, logger=lg)
-                    for _ in range(5):
+                    for _ in range(300):
                         if ctx.box.get("task_status") != 1 or cl.stop_event.is_set(): break
                         gi = cl.g(_j("/", "apple","_","xf","_","ad","_","inspire"), B1(ctx))
                         bd = d1(gi["body"])
@@ -399,7 +399,7 @@ def RUN(cl: A, ctx: C, lg: logging.LoggerAdapter) -> C:
                 lg.error("BOX 流程失败: %s", e, exc_info=True)
             st = 2; continue
         if st == 2:
-            for _ in range(6):
+            for _ in range(300):
                 if cl.stop_event.is_set(): break
                 try:
                     gi = cl.g(_j("/", "apple","_","xf","_","ad","_","inspire"), B1(ctx))
