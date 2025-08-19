@@ -80,7 +80,6 @@ def read_and_parse_file(file_path,token, url):
 
                 
                 decrypt_messag = json.loads(result)
-                print(decrypt_messag)
 
                 extract_messag = extract_info(decrypt_messag)
 
@@ -209,3 +208,4 @@ def extract_info(data: dict) -> dict:
     return {field: find_first(data, field) for field in fields}
 token, url = extract_token_and_url()
 start_account(token, url)
+
