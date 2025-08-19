@@ -1,10 +1,9 @@
-import os,tempfile
+import os
 import re
 import json
 import re
 import json
 import requests
-import ast
 from typing import Any, Dict, List, Union
 
 JSONType = Union[Dict[str, Any], List[Any]]
@@ -73,6 +72,7 @@ def read_and_parse_file(file_path,token, url):
                 
                 
                 message = parsed_dict['message'].encode().decode('unicode_escape').replace('\r\n', '').replace('\/', '/')
+                
                 data = {"operation":"decrypt","data":message}
                 headers = {"Content-Type": "application/json","X-Token":token}
                 finally_url = url + '/process'
@@ -80,6 +80,7 @@ def read_and_parse_file(file_path,token, url):
 
                 
                 decrypt_messag = json.loads(result)
+                print(decrypt_messag)
 
                 extract_messag = extract_info(decrypt_messag)
 
@@ -206,4 +207,5 @@ def extract_info(data: dict) -> dict:
     ]
 
     return {field: find_first(data, field) for field in fields}
-
+token, url = extract_token_and_url()
+start_account(token, url)
