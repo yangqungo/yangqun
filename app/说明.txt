@@ -2,3 +2,4 @@ token_xf 是放密匙的
 url_xf 是填服务器地址的
 xf_wo.text 是放账号的,多账号就增加一个以xf_***的text文件
 ksxifan_ver_1.py是脚本文件
+抓连接抓/rest/e/tube/inspire/treasureBox
