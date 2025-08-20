@@ -165,6 +165,18 @@ def extract_token_and_url():
         raise ValueError("未找到 token_xf 文件")
     if url_xf is None:
         raise ValueError("未找到 url_xf 文件")
+    
+    
+
+    url = f"{url_xf.rstrip('/')}/token_remaining"
+    
+    params = {
+            "token": token_xf,
+            "collection": "tokens",   # 或者 "ks_token"
+        }
+    resp = requests.get(url, params=params, timeout=(5, 20))
+    data = resp.json()
+    print(f"token剩余次数:{data['remaining']}")
 
     return token_xf, url_xf
 
