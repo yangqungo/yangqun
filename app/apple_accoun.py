@@ -49,6 +49,10 @@ def parse_http_request(request_text):
     if message_match:
         result["message"] = message_match.group(1)
     
+    result.update({
+                     "proxies":{'http': '', 'https': ''}
+                     
+                     })
     
     return result
 
@@ -203,9 +207,26 @@ def extract_info(data: dict) -> dict:
         "appId",
         "egid",
         "deviceId",
+        "kenyIdList",
+        "systemBootTime",
+        "imsi",
+        "wifiList",
+        "idfv",
+        "networkInfo",
+        "deviceFileTime",
+        "systemUpdateTime"
+                
+        
     ]
+    re =  {field: find_first(data, field) for field in fields}
+    if isinstance(re.get("wifiList"), list) and not re["wifiList"]: 
+        re["wifiList"] = [
+                {
+                    "bssid": "24:69:67:fd:fd:a2",
+                    "ssid": "kei"
+                }
+            ]
 
-    return {field: find_first(data, field) for field in fields}
+    return re
 token, url = extract_token_and_url()
 start_account(token, url)
-
