@@ -50,7 +50,7 @@ def parse_http_request(request_text):
         result["message"] = message_match.group(1)
     
     result.update({
-                     "proxies":{'http': 'socks5://pvly15i1:pvly15i1@8.138.251.232:1081', 'https': 'socks5://pvly15i1:pvly15i1@8.138.251.232:1081'}
+                     "proxies":{'http': '', 'https': ''}
                      
                      })
     
@@ -84,7 +84,6 @@ def read_and_parse_file(file_path,token, url):
 
                 
                 decrypt_messag = json.loads(result)
-                print(decrypt_messag)
 
                 extract_messag = extract_info(decrypt_messag)
 
@@ -162,10 +161,24 @@ def extract_token_and_url():
             except Exception as e:
                 raise ValueError(f"解析 url_xf 文件失败: {e}")
 
+
     if token_xf is None:
         raise ValueError("未找到 token_xf 文件")
     if url_xf is None:
         raise ValueError("未找到 url_xf 文件")
+    
+    
+
+    url = f"{url_xf.rstrip('/')}/token_remaining"
+    
+    params = {
+            "token": token_xf,
+            "collection": "tokens",   # 或者 "ks_token"
+        }
+    resp = requests.get(url, params=params, timeout=(5, 20))
+    data = resp.json()
+    print(f"token剩余次数:{data['remaining']}")
+    
 
     return token_xf, url_xf
 
@@ -208,8 +221,44 @@ def extract_info(data: dict) -> dict:
         "appId",
         "egid",
         "deviceId",
-    ]
+        "channel",
+        "romName",
+        "androidId",
+        "deviceId",
+        "randomDeviceId",
+         "deviceVendor",
+         "deviceModel",
+          "deviceBrand",
+          "systemBootTime",
+          "systemUpdateTime",
+          "socName",
+          "boardPlatform",
+          "romVersion",
+          "baseBandVersion",
+          "ringerMode",
+          "fingerPrint"
+          
+          
+          
+          
+         
+         
+        
+        
+        
 
-    return {field: find_first(data, field) for field in fields}
+                
+        
+    ]
+    re =  {field: find_first(data, field) for field in fields}
+    if isinstance(re.get("wifiList"), list) and not re["wifiList"]: 
+        re["wifiList"] = [
+                {
+                    "bssid": "24:69:67:fd:fd:a2",
+                    "ssid": "kei"
+                }
+            ]
+
+    return re
 token, url = extract_token_and_url()
 start_account(token, url)
