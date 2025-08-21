@@ -230,7 +230,7 @@ class Ctx:
     a: dict
     n: int = 1
     tid: int = 6005
-    tids: list[int] = field(default_factory=lambda: [6005, 6018, 6013, 6014, 6015, 6017, 6020, 6027, 6037, 6038, 6040, 6041])
+    tids: list[int] = field(default_factory=lambda: [6005, 6014])
     tidx: int = 0
     r: int = 0
     td: int = 0
@@ -536,7 +536,7 @@ def rf(c: C, ctx: Ctx, l: logging.LoggerAdapter) -> Ctx:
             boj = c.dr(url=gbo["url"], payload=b, headers=gbo["headers"])
             ctx.rw = hbr(ctx, boj, base_url=c.bu, token=c.tk, stop_event=c.se, logger=l)
             l.info("宝箱奖励 %s \n", ctx.rw)
-            for _ in range(4):
+            for _ in range(71):
                 if ctx.bx.get("task_status") != 1 or c.se.is_set():
                     break
                 gi = c.ar("/xf_ad_inspire", bip(ctx))
@@ -556,7 +556,7 @@ def rf(c: C, ctx: Ctx, l: logging.LoggerAdapter) -> Ctx:
         raise
     except Exception as e:
         l.error("BOX 流程失败: %s", e, exc_info=True)
-    for _ in range(6):
+    for _ in range(99):
         if c.se.is_set():
             break
         try:
